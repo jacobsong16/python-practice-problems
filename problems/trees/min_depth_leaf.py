@@ -13,10 +13,11 @@ def min_depth_leaf(tree):
 
     if tree.children == None or tree.children == []:
         return 0
-    min = math.inf
-    for child in tree.children:
-        min = 1 + min(min, min_depth_leaf(child))
-    return min
+    first, *rest = tree.children
+    min_depth = min_depth_leaf(first)
+    for child in rest:
+        min_depth = min(min_depth, min_depth_leaf(child))
+    return 1 + min_depth
 
 #############################################################
 ###                                                       ###
